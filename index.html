@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>那家不能說的店</title>
+<meta name="description" content="午餐投票小遊戲：投票決定吃什麼，想翻盤就靠一張嘴說服大家，但不准說出店名。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500;700&family=DM+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 15h26q-1 12-13 13Q4 27 3 15z' fill='%23ff7a2f'/%3E%3Cpath d='M11 10q-3-3 0-6M16 9q-3-3 0-6M21 10q-3-3 0-6' fill='none' stroke='%239aa1b2' stroke-width='2'/%3E%3C/svg%3E">
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+   <div class="hero-text">
+    <h1>那家不能說的<span class="x" aria-hidden="true">店</span><span class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">店</span></h1>
+    <p class="sub">每天中午前的小遊戲：投票決定吃什麼，想翻盤就靠一張嘴說服大家。只是，不准說出店名。</p>
+   </div>
+   <div class="pot" aria-hidden="true">
+    <svg viewBox="0 0 220 190">
+      <defs><radialGradient id="brothG" cx="45%" cy="35%" r="70%"><stop offset="0" stop-color="#ff9a52"/><stop offset="1" stop-color="#d8431f"/></radialGradient></defs>
+      <g class="steam"><path d="M78 66 q-9 -11 0 -22 q9 -11 0 -22"/><path d="M110 60 q-9 -11 0 -22 q9 -11 0 -22"/><path d="M142 66 q-9 -11 0 -22 q9 -11 0 -22"/></g>
+      <rect x="62" y="176" width="96" height="8" rx="4" fill="var(--line)"/>
+      <path class="flame" d="M88 176 q8 -13 6 -20 q8 6 8 20 z" fill="#ffb23f"/>
+      <path class="flame" d="M112 176 q8 -15 6 -22 q9 7 8 22 z" fill="#ff8a3d"/>
+      <path class="flame" d="M136 176 q-2 -12 4 -18 q6 8 4 18 z" fill="#ffb23f"/>
+      <rect x="10" y="96" width="26" height="11" rx="5.5" fill="var(--pot)"/>
+      <rect x="184" y="96" width="26" height="11" rx="5.5" fill="var(--pot)"/>
+      <path d="M26 100 Q28 160 110 162 Q192 160 194 100 Z" fill="var(--pot)"/>
+      <path d="M44 120 Q58 146 96 151" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="110" cy="100" rx="86" ry="21" fill="var(--pot-rim)"/>
+      <ellipse cx="110" cy="101" rx="75" ry="15" fill="url(#brothG)"/>
+      <circle class="b" cx="66" cy="102" r="3"/><circle class="b" cx="132" cy="108" r="2.5"/><circle class="b" cx="98" cy="110" r="3"/><circle class="b" cx="156" cy="98" r="2.5"/><circle class="b" cx="120" cy="93" r="2"/>
+      <g class="fl"><rect x="62" y="88" width="20" height="15" rx="3" fill="#f7e3ae" stroke="#e5c475" stroke-width="1.5"/></g>
+      <g class="fl"><circle cx="102" cy="95" r="8.5" fill="#f5f1e8" stroke="#dcd2bf" stroke-width="1.5"/><circle cx="99" cy="92" r="2" fill="#fff"/></g>
+      <g class="fl"><path d="M122 100 a12 10 0 0 1 24 0 z" fill="#8b5a3a"/><path d="M128 95 l12 0 M134 91 l0 8" stroke="#f3e2c9" stroke-width="1.6" stroke-linecap="round"/></g>
+      <g class="fl"><path d="M150 103 q12 -4 10 -15 q-2 -6 -8 -5" fill="none" stroke="#ff8f6a" stroke-width="6" stroke-linecap="round"/><path d="M150 103 q12 -4 10 -15" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="2 3"/></g>
+      <g class="fl"><ellipse cx="86" cy="108" rx="10" ry="3.2" fill="#4caf50" transform="rotate(-12 86 108)"/></g>
+      <g class="fl"><circle cx="118" cy="109" r="3.2" fill="none" stroke="#7cc95b" stroke-width="2"/><circle cx="74" cy="106" r="2.6" fill="none" stroke="#7cc95b" stroke-width="2"/></g>
+      <path d="M24 100 A86 21 0 0 0 196 100" fill="none" stroke="var(--pot-rim)" stroke-width="5"/>
+    </svg>
+   </div>
+  </div>
+
+  <ol class="flow" id="steps">
+    <li data-p="vote"><span class="t"></span><b>投票</b><p>選價格、距離、類型。除了飯類、麵類，每天多一道限定食物，例如雞翅、薯條。</p></li>
+    <li data-p="lobby"><span class="t"></span><b>遊說</b><p>用形容的說服別人，說出店名會被塗黑。</p></li>
+    <li data-p="revote"><span class="t"></span><b>改票</b><p>被說服的人可以改票。沒人遊說就直接定案。</p></li>
+    <li data-p="result"><span class="t"></span><b>定案</b><p>從 Google 地圖選出一家，然後準時出發。</p></li>
+  </ol>
+  <p class="tip"><b>匿名參加：</b>每個人每天會拿到系統隨機的暱稱，不知道誰投了什麼，就不用互相遷就。</p>
+  <section class="card notice" id="notice" hidden></section>
+
+  <div class="bar-top">
+    <div class="clock"><span class="alarm" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 9 a5 5 0 0 1 7 -5" fill="none" stroke="var(--ban)" stroke-width="3" stroke-linecap="round"/><path d="M27 9 a5 5 0 0 0 -7 -5" fill="none" stroke="var(--ban)" stroke-width="3" stroke-linecap="round"/><path d="M9 27 l-3 3 M23 27 l3 3" stroke="var(--ban)" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="17.5" r="11" fill="var(--ban)"/><circle cx="16" cy="17.5" r="8.2" fill="#fff"/><path d="M16 12 v6 l4 2.5" fill="none" stroke="#2a2f3a" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="5" r="1.8" fill="var(--ban)"/></svg></span><b id="clock">10:59</b><small id="phaseLabel">還沒開始</small></div>
+    <div class="me-tag" title="系統隨機給你的匿名暱稱"><span class="av" id="meAv" aria-hidden="true" style="--h:24"></span><span>你是 <b id="meName"></b></span></div>
+    <div class="controls">
+      <button class="btn snd" id="soundBtn" aria-pressed="true" title="音樂與音效"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span id="soundTxt">音樂 開</span></button>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <section class="card" id="ballot">
+      <header><h2>你的選票</h2><small id="ballotState"></small></header>
+      <div class="nudge" id="nudge" hidden role="status"></div>
+      <div class="group"><div class="label">價格區間（每人）</div><div class="chips" id="g-price"></div></div>
+      <div class="group"><div class="label">願意走多遠（步行）</div><div class="chips" id="g-dist"></div></div>
+      <div class="group"><div class="label">吃什麼類型</div><div class="chips" id="g-cat"></div></div>
+    </section>
+
+    <section class="card">
+      <header><h2>開票</h2><small id="voteCount"></small></header>
+      <div class="tally" id="tally"></div>
+    </section>
+  </div>
+
+  <section class="card" id="lobby">
+    <header class="lobby-head"><h2>遊說時間</h2>
+      <div class="duel" aria-hidden="true"><svg viewBox="0 0 120 60">
+        <g class="mL">
+          <path d="M6 30 q2 -14 18 -14 q16 0 18 14 z" fill="#fff" stroke="#e3e3e3" stroke-width="1.5"/>
+          <circle cx="16" cy="24" r="1.3" fill="#e9e3d2"/><circle cx="27" cy="21" r="1.3" fill="#e9e3d2"/><circle cx="33" cy="26" r="1.3" fill="#e9e3d2"/>
+          <path d="M3 30 h42 q-2 20 -21 22 q-19 -2 -21 -22 z" fill="#6aaee6"/>
+          <path d="M8 36 h32" stroke="#fff" stroke-opacity=".6" stroke-width="2" stroke-dasharray="3 3"/>
+          <circle cx="17" cy="42" r="1.8" fill="#24324a"/><circle cx="31" cy="42" r="1.8" fill="#24324a"/>
+          <path d="M21 46 q3 3 6 0" fill="none" stroke="#24324a" stroke-width="1.6" stroke-linecap="round"/>
+          <rect x="17" y="52" width="14" height="4" rx="2" fill="#6aaee6"/>
+        </g>
+        <g class="mR">
+          <path d="M84 30 q-2 -12 4 -14 q4 10 8 0 q4 10 8 0 q4 10 8 0 q6 4 4 14" fill="none" stroke="#f2cf72" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M100 30 l14 -22 M104 31 l14 -21" stroke="#9a6b44" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M75 30 h42 q-2 20 -21 22 q-19 -2 -21 -22 z" fill="#ff7a2f"/>
+          <path d="M80 36 h32" stroke="#fff" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="89" cy="42" r="1.8" fill="#4a1d05"/><circle cx="103" cy="42" r="1.8" fill="#4a1d05"/>
+          <path d="M93 47 q3 -3 6 0" fill="none" stroke="#4a1d05" stroke-width="1.6" stroke-linecap="round"/>
+          <rect x="89" y="52" width="14" height="4" rx="2" fill="#ff7a2f"/>
+        </g>
+        <rect x="46" y="4" width="28" height="16" rx="8" fill="var(--bubble)"/>
+        <path d="M58 20 l2 5 l3 -5 z" fill="var(--bubble)"/>
+        <circle class="dot" cx="53" cy="12" r="2" fill="var(--muted)"/><circle class="dot" cx="60" cy="12" r="2" fill="var(--muted)"/><circle class="dot" cx="67" cy="12" r="2" fill="var(--muted)"/>
+        <path class="puff" d="M48 30 q-3 -4 0 -8" fill="none" stroke="var(--ban)" stroke-width="2" stroke-linecap="round"/>
+        <path class="puff" d="M72 30 q3 -4 0 -8" fill="none" stroke="var(--ban)" stroke-width="2" stroke-linecap="round"/>
+      </svg></div>
+      <small id="chatState"></small></header>
+    <p class="rule"><b>禁說店名</b>：店名裡有辨識度的字，一個字都不行；店名中任何連續兩個字也不行。「麵、飯、牛肉」這類食物字可以用。</p>
+    <div class="chat" id="chat" aria-live="polite"><p class="empty">遊說還沒開始。11:30 投票結束後，想翻盤的人可以在這裡說服大家。</p></div>
+    <form class="say" id="sayForm">
+      <input id="sayInput" autocomplete="off" placeholder="用形容的說服大家，例如：湯頭很濃、麵很Q的那種" disabled>
+      <button class="btn primary" id="sayBtn" disabled>送出</button>
+    </form>
+    <p class="hint err" id="sayErr" aria-live="polite"></p>
+    
+  </section>
+
+  <section class="card result" id="result" hidden></section>
+  <div class="dice-ov" id="diceOv" hidden role="dialog" aria-modal="true" aria-labelledby="diceTitle">
+    <div class="dice-box">
+      <h3 id="diceTitle">平手，擲骰決定</h3>
+      <p class="hint" id="diceField"></p>
+      <div class="die" id="die" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="dice-map" id="diceMap"></div>
+      <p class="dice-res" id="diceRes" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <p id="yday"></p>
+    <p>餐廳資料來自 Google 地圖。暱稱每天重新抽，票數只顯示統計。</p>
+  </div>
+</div>
+</body>
+</html>

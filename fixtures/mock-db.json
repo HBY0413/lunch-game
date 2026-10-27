@@ -1,0 +1,12 @@
+{
+  "votes": [
+    {"day":"2026-10-28","price":"p2","dist":"d1","cat":"c0"},
+    {"day":"2026-10-28","price":"p2","dist":"d1","cat":"c0"},
+    {"day":"2026-10-28","price":"p1","dist":"d2","cat":"c0"},
+    {"day":"2026-10-28","price":"p2","dist":"d1","cat":"c1"}
+  ],
+  "results": [
+    {"day":"2026-10-27","decided":{},"place":{"id":"p_rice","name":"阿樹爌肉飯"},"steps":[]}
+  ],
+  "banned_terms": []
+}

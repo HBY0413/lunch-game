@@ -1,0 +1,1028 @@
+{
+  "_note": "模擬的 Google Places API 回應，只供 --mock 測試。mockMenu 是測試用欄位，Google 不會回傳。",
+  "places": [
+    {
+      "id": "p_fuji",
+      "displayName": {
+        "text": "福記乾麵",
+        "languageCode": "zh-TW"
+      },
+      "formattedAddress": "（模擬地址）福記乾麵",
+      "location": {
+        "latitude": 25.035695,
+        "longitude": 121.5654
+      },
+      "rating": 4.1,
+      "userRatingCount": 340,
+      "businessStatus": "OPERATIONAL",
+      "regularOpeningHours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 20,
+              "minute": 0
+            }
+          }
+        ]
+      },
+      "googleMapsUri": "https://maps.google.com/?cid=example",
+      "priceRange": {
+        "startPrice": {
+          "currencyCode": "TWD",
+          "units": "60"
+        },
+        "endPrice": {
+          "currencyCode": "TWD",
+          "units": "110"
+        }
+      }
+    },
+    {
+      "id": "p_beef",
+      "displayName": {
+        "text": "老街口牛肉麵",
+        "languageCode": "zh-TW"
+      },
+      "formattedAddress": "（模擬地址）老街口牛肉麵",
+      "location": {
+        "latitude": 25.034628,
+        "longitude": 121.57002
+      },
+      "rating": 4.3,
+      "userRatingCount": 980,
+      "businessStatus": "OPERATIONAL",
+      "regularOpeningHours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 21,
+              "minute": 0
+            }
+          }
+        ]
+      },
+      "googleMapsUri": "https://maps.google.com/?cid=example",
+      "priceRange": {
+        "startPrice": {
+          "currencyCode": "TWD",
+          "units": "160"
+        },
+        "endPrice": {
+          "currencyCode": "TWD",
+          "units": "240"
+        }
+      }
+    },
+    {
+      "id": "p_ramen",
+      "displayName": {
+        "text": "晴川拉麵",
+        "languageCode": "zh-TW"
+      },
+      "formattedAddress": "（模擬地址）晴川拉麵",
+      "location": {
+        "latitude": 25.027701,
+        "longitude": 121.570757
+      },
+      "rating": 4.6,
+      "userRatingCount": 2100,
+      "businessStatus": "OPERATIONAL",
+      "regularOpeningHours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 22,
+              "minute": 0
+            }
+          }
+        ]
+      },
+      "googleMapsUri": "https://maps.google.com/?cid=example",
+      "priceRange": {
+        "startPrice": {
+          "currencyCode": "TWD",
+          "units": "200"
+        },
+        "endPrice": {
+          "currencyCode": "TWD",
+          "units": "280"
+        }
+      }
+    },
+    {
+      "id": "p_cold",
+      "displayName": {
+        "text": "巷弄涼麵",
+        "languageCode": "zh-TW"
+      },
+      "formattedAddress": "（模擬地址）巷弄涼麵",
+      "location": {
+        "latitude": 25.031389,
+        "longitude": 121.564523
+      },
+      "rating": 4.4,
+      "userRatingCount": 30,
+      "businessStatus": "OPERATIONAL",
+      "regularOpeningHours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 19,
+              "minute": 0
+            }
+          }
+        ]
+      },
+      "googleMapsUri": "https://maps.google.com/?cid=example",
+      "priceRange": {
+        "startPrice": {
+          "currencyCode": "TWD",
+          "units": "50"
+        },
+        "endPrice": {
+          "currencyCode": "TWD",
+          "units": "90"
+        }
+      }
+    },
+    {
+      "id": "p_night",
+      "displayName": {
+        "text": "夜貓麵館",
+        "languageCode": "zh-TW"
+      },
+      "formattedAddress": "（模擬地址）夜貓麵館",
+      "location": {
+        "latitude": 25.033197,
+        "longitude": 121.562931
+      },
+      "rating": 4.5,
+      "userRatingCount": 400,
+      "businessStatus": "OPERATIONAL",
+      "regularOpeningHours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 2,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 2,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 2,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 2,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 2,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 2,
+              "minute": 0
+            }
+          }
+        ]
+      },
+      "googleMapsUri": "https://maps.google.com/?cid=example",
+      "priceRange": {
+        "startPrice": {
+          "currencyCode": "TWD",
+          "units": "80"
+        },
+        "endPrice": {
+          "currencyCode": "TWD",
+          "units": "150"
+        }
+      }
+    },
+    {
+      "id": "p_rice",
+      "displayName": {
+        "text": "阿樹爌肉飯",
+        "languageCode": "zh-TW"
+      },
+      "formattedAddress": "（模擬地址）阿樹爌肉飯",
+      "location": {
+        "latitude": 25.035246,
+        "longitude": 121.5654
+      },
+      "rating": 4.5,
+      "userRatingCount": 820,
+      "businessStatus": "OPERATIONAL",
+      "regularOpeningHours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 20,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 20,
+              "minute": 0
+            }
+          }
+        ]
+      },
+      "googleMapsUri": "https://maps.google.com/?cid=example",
+      "priceRange": {
+        "startPrice": {
+          "currencyCode": "TWD",
+          "units": "70"
+        },
+        "endPrice": {
+          "currencyCode": "TWD",
+          "units": "120"
+        }
+      }
+    },
+    {
+      "id": "p_bento",
+      "displayName": {
+        "text": "金禾便當",
+        "languageCode": "zh-TW"
+      },
+      "formattedAddress": "（模擬地址）金禾便當",
+      "location": {
+        "latitude": 25.034465,
+        "longitude": 121.569558
+      },
+      "rating": 4.2,
+      "userRatingCount": 410,
+      "businessStatus": "OPERATIONAL",
+      "regularOpeningHours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 19,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 19,
+              "minute": 0
+            }
+          }
+        ]
+      },
+      "googleMapsUri": "https://maps.google.com/?cid=example",
+      "priceLevel": "PRICE_LEVEL_INEXPENSIVE"
+    },
+    {
+      "id": "p_fried",
+      "displayName": {
+        "text": "酷客炸雞",
+        "languageCode": "zh-TW"
+      },
+      "formattedAddress": "（模擬地址）酷客炸雞",
+      "location": {
+        "latitude": 25.031013,
+        "longitude": 121.567409
+      },
+      "rating": 3.9,
+      "userRatingCount": 1500,
+      "businessStatus": "OPERATIONAL",
+      "regularOpeningHours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 22,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 22,
+              "minute": 0
+            }
+          }
+        ]
+      },
+      "googleMapsUri": "https://maps.google.com/?cid=example",
+      "priceRange": {
+        "startPrice": {
+          "currencyCode": "TWD",
+          "units": "90"
+        },
+        "endPrice": {
+          "currencyCode": "TWD",
+          "units": "150"
+        }
+      },
+      "mockMenu": [
+        "雞翅",
+        "薯條"
+      ]
+    },
+    {
+      "id": "p_burger",
+      "displayName": {
+        "text": "星艦漢堡",
+        "languageCode": "zh-TW"
+      },
+      "formattedAddress": "（模擬地址）星艦漢堡",
+      "location": {
+        "latitude": 25.028972,
+        "longitude": 121.563206
+      },
+      "rating": 4.1,
+      "userRatingCount": 900,
+      "businessStatus": "OPERATIONAL",
+      "regularOpeningHours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 10,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 21,
+              "minute": 0
+            }
+          }
+        ]
+      },
+      "googleMapsUri": "https://maps.google.com/?cid=example",
+      "priceRange": {
+        "startPrice": {
+          "currencyCode": "TWD",
+          "units": "120"
+        },
+        "endPrice": {
+          "currencyCode": "TWD",
+          "units": "200"
+        }
+      },
+      "mockMenu": [
+        "雞翅",
+        "薯條"
+      ]
+    },
+    {
+      "id": "p_thai",
+      "displayName": {
+        "text": "曼谷小館",
+        "languageCode": "zh-TW"
+      },
+      "formattedAddress": "（模擬地址）曼谷小館",
+      "location": {
+        "latitude": 25.033377,
+        "longitude": 121.560659
+      },
+      "rating": 4.4,
+      "userRatingCount": 540,
+      "businessStatus": "OPERATIONAL",
+      "regularOpeningHours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 21,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 11,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 21,
+              "minute": 0
+            }
+          }
+        ]
+      },
+      "googleMapsUri": "https://maps.google.com/?cid=example",
+      "priceRange": {
+        "startPrice": {
+          "currencyCode": "TWD",
+          "units": "130"
+        },
+        "endPrice": {
+          "currencyCode": "TWD",
+          "units": "200"
+        }
+      },
+      "mockMenu": [
+        "雞翅",
+        "咖哩"
+      ]
+    }
+  ]
+}
