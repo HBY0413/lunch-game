@@ -42,18 +42,18 @@ node picker/pick.mjs prepare --mock
 node picker/pick.mjs pick --mock --date 2026-10-28 --force
 ```
 
-想在非午餐時間試玩，到 Supabase SQL Editor 執行（記得測完改回來）：
+想在非午餐時間試玩，到 Supabase SQL Editor 執行。`test_day` 讓測試資料記在假日期上，不會混進真正的今天（記得測完改回來）：
 
 ```sql
 -- 從現在開始：投票 5 分鐘、遊說 3 分鐘、改票 2 分鐘
-update settings set weekdays_only = false,
+update settings set weekdays_only = false, test_day = '2000-01-03',
   vote_start = (now() at time zone 'Asia/Taipei')::time,
   lobby_start = (now() at time zone 'Asia/Taipei')::time + interval '5 min',
   revote_start = (now() at time zone 'Asia/Taipei')::time + interval '8 min',
   result_at = (now() at time zone 'Asia/Taipei')::time + interval '10 min';
 
 -- 改回正式時段
-update settings set weekdays_only = true, vote_start = '11:00', lobby_start = '11:30', revote_start = '11:40', result_at = '11:50';
+update settings set weekdays_only = true, test_day = null, vote_start = '11:00', lobby_start = '11:30', revote_start = '11:40', result_at = '11:50';
 ```
 
 測試時段結束後，到 GitHub 的 Actions 頁籤手動執行「午餐自動排程」，選 `pick`（勾選 force 可覆蓋當天結果）。

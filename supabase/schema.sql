@@ -11,6 +11,8 @@ create table if not exists public.settings (
   weekdays_only boolean not null default true
 );
 insert into public.settings (id) values (1) on conflict do nothing;
+-- 測試用：設定一個假日期，測試資料就不會混進真正的今天。正式使用時保持 null。
+alter table public.settings add column if not exists test_day date;
 alter table public.settings enable row level security;
 drop policy if exists settings_read on public.settings;
 create policy settings_read on public.settings for select using (true);
@@ -20,6 +22,12 @@ create or replace function public.tw_now() returns timestamp
   language sql stable as $$ select now() at time zone 'Asia/Taipei' $$;
 create or replace function public.tw_today() returns date
   language sql stable as $$ select (now() at time zone 'Asia/Taipei')::date $$;
+
+-- 遊戲日期：平常是台北的今天；測試時用 settings.test_day
+create or replace function public.game_day() returns date
+  language sql stable security definer set search_path = public as $$
+  select coalesce((select test_day from settings where id = 1), tw_today())
+$$;
 
 -- 現在是哪個階段：closed / wait / vote / lobby / revote / result
 create or replace function public.current_phase() returns text
@@ -55,14 +63,14 @@ declare
   noun text[] := array['滷蛋','鍋貼','珍奶','雞排','肉圓','蔥油餅','小籠包','鹹酥雞','豆花','地瓜球','米糕','蘿蔔糕','貢丸','飯糰','甜不辣','蛋塔','麻糬','鬆餅','水煎包','車輪餅'];
 begin
   if uid is null then raise exception '尚未登入'; end if;
-  select nickname into n from players where day = tw_today() and user_id = uid;
+  select nickname into n from players where day = game_day() and user_id = uid;
   if n is not null then return n; end if;
   loop
     tries := tries + 1;
     n := adj[1 + floor(random() * array_length(adj, 1))::int] || noun[1 + floor(random() * array_length(noun, 1))::int];
     if tries > 40 then n := n || (floor(random() * 90) + 10)::int::text; end if;
     begin
-      insert into players (day, user_id, nickname) values (tw_today(), uid, n);
+      insert into players (day, user_id, nickname) values (game_day(), uid, n);
       return n;
     exception when unique_violation then
       -- 同一天暱稱重複，換一個再試
@@ -92,7 +100,7 @@ begin
   if current_phase() not in ('vote', 'revote') then raise exception '現在不是投票時間'; end if;
   perform join_today();
   insert into votes (day, user_id, price, dist, cat, updated_at)
-  values (tw_today(), uid, p_price, p_dist, p_cat, now())
+  values (game_day(), uid, p_price, p_dist, p_cat, now())
   on conflict (day, user_id) do update
     set price = excluded.price, dist = excluded.dist, cat = excluded.cat, updated_at = now();
 end $$;
@@ -101,11 +109,11 @@ end $$;
 create or replace function public.get_tally() returns jsonb
   language sql stable security definer set search_path = public as $$
   select jsonb_build_object(
-    'price', coalesce((select jsonb_object_agg(price, n) from (select price, count(*) n from votes where day = tw_today() and price is not null group by price) x), '{}'::jsonb),
-    'dist',  coalesce((select jsonb_object_agg(dist, n)  from (select dist,  count(*) n from votes where day = tw_today() and dist  is not null group by dist)  x), '{}'::jsonb),
-    'cat',   coalesce((select jsonb_object_agg(cat, n)   from (select cat,   count(*) n from votes where day = tw_today() and cat   is not null group by cat)   x), '{}'::jsonb),
-    'voters',  (select count(*) from votes where day = tw_today()),
-    'players', (select count(*) from players where day = tw_today()),
+    'price', coalesce((select jsonb_object_agg(price, n) from (select price, count(*) n from votes where day = game_day() and price is not null group by price) x), '{}'::jsonb),
+    'dist',  coalesce((select jsonb_object_agg(dist, n)  from (select dist,  count(*) n from votes where day = game_day() and dist  is not null group by dist)  x), '{}'::jsonb),
+    'cat',   coalesce((select jsonb_object_agg(cat, n)   from (select cat,   count(*) n from votes where day = game_day() and cat   is not null group by cat)   x), '{}'::jsonb),
+    'voters',  (select count(*) from votes where day = game_day()),
+    'players', (select count(*) from players where day = game_day()),
     'phase', current_phase()
   )
 $$;
@@ -158,7 +166,7 @@ create table if not exists public.messages (
 );
 alter table public.messages enable row level security;
 drop policy if exists messages_read_today on public.messages;
-create policy messages_read_today on public.messages for select using (day = public.tw_today());
+create policy messages_read_today on public.messages for select using (day = public.game_day());
 
 create or replace function public.post_message(p_body text) returns jsonb
   language plpgsql security definer set search_path = public as $$
@@ -177,7 +185,7 @@ begin
   end if;
   nick := join_today();
   select * into m from mask_text(body);
-  insert into messages (day, nickname, body, hits, author) values (tw_today(), nick, m.masked, m.hits, uid);
+  insert into messages (day, nickname, body, hits, author) values (game_day(), nick, m.masked, m.hits, uid);
   return jsonb_build_object('nickname', nick, 'body', m.masked, 'hits', m.hits);
 end $$;
 
@@ -203,6 +211,7 @@ grant execute on function public.cast_vote(text, text, text) to authenticated;
 grant execute on function public.post_message(text)          to authenticated;
 grant execute on function public.get_tally()                 to anon, authenticated;
 grant execute on function public.current_phase()             to anon, authenticated;
+grant execute on function public.game_day()                  to anon, authenticated;
 
 -- 聊天與結果即時推送
 do $$ begin

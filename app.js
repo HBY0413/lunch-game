@@ -143,7 +143,7 @@ async function boot() {
     S.error = '連不上資料庫：' + (e.message || e);
     render(); return;
   }
-  S.day = taipeiNow().iso;
+  S.day = S.settings.test_day || taipeiNow().iso;
   await refreshAll(true);
   subscribe();
   setInterval(tick, 1000);
@@ -193,7 +193,7 @@ function subscribe() {
 
 async function poll() {
   if (!S.sb || !S.settings) return;
-  if (taipeiNow().iso !== S.day) { location.reload(); return; }
+  if (!S.settings.test_day && taipeiNow().iso !== S.day) { location.reload(); return; }
   const p = S.phase;
   if (['vote', 'lobby', 'revote', 'result'].includes(p)) {
     const { data } = await S.sb.rpc('get_tally'); if (data) S.tally = data;

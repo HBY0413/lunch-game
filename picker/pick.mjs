@@ -69,6 +69,10 @@ async function sb(path, { method = 'GET', body, prefer } = {}) {
 }
 
 const db = {
+  async testDay() {
+    if (MOCK) return null;
+    return (await sb('settings?id=eq.1&select=test_day'))[0]?.test_day || null;
+  },
   async votes(day) {
     if (MOCK) return (await mockDb()).votes.filter(v => v.day === day);
     return sb(`votes?day=eq.${day}&select=price,dist,cat`);
@@ -253,8 +257,10 @@ async function prepare() {
 
 async function pick() {
   const now = taipeiNow();
-  const day = opt('--date') || now.iso;
-  const weekday = opt('--date') ? new Date(day + 'T00:00:00Z').getUTCDay() : now.weekday;
+  const testDay = await db.testDay();
+  const day = opt('--date') || testDay || now.iso;
+  if (testDay) console.log(`（測試模式：使用測試日期 ${testDay}）`);
+  const weekday = day !== now.iso ? new Date(day + 'T00:00:00Z').getUTCDay() : now.weekday;
   if (!flag('--force') && await db.resultExists(day)) { console.log(`${day} 已經有結果了，略過（加 --force 可重新選）。`); return; }
 
   const votes = await db.votes(day);
