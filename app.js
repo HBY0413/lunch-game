@@ -439,7 +439,7 @@ function renderResult() {
   const body = pl ? `<div class="pick-row"><div class="pick"><span class="eyebrow">系統選出</span><span class="name">${esc(pl.name)}</span>
     <div class="meta"><span>評分 <b>${Number(pl.rating).toFixed(1)}</b> ★</span><span><b>${Number(pl.reviews).toLocaleString()}</b> 則評論</span><span>步行約 <b>${pl.walk}</b> 分鐘（${pl.meters} m）</span><span>每人約 <b>${esc(pr)}</b></span></div>
     ${pl.address ? `<p class="hint">${esc(pl.address)}</p>` : ''}${pl.url ? `<a class="maplink" href="${esc(pl.url)}" target="_blank" rel="noopener">在 Google 地圖開啟</a>` : ''}</div>${BOWL}</div>`
-    : `<p>${d.voters ? '附近找不到符合條件的店，今天自由發揮吧！' : '今天沒有人投票。'}</p>`;
+    : `<p>${d.error ? esc(d.error) : d.voters ? '附近找不到符合條件的店，今天自由發揮吧！' : '今天沒有人投票。'}</p>`;
   const steps = (r.steps || []).map(s => `<li class="${s.soft ? 'soft' : ''}"><span>${esc(s.label)}</span><span class="n">${s.n == null ? '' : s.n + ' 家'}</span></li>`).join('');
   el.innerHTML = `<header><h2>今天吃這家</h2><small>${fmtHM(S.settings.result_at)} 定案</small></header>
     ${d.voters ? `<div class="decided"><span>${esc(priceL)} 元</span><span>步行 ${esc(distL)}</span><span>${esc(catL)}</span></div>` : ''}

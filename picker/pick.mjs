@@ -282,7 +282,15 @@ async function pick() {
   const last = await db.lastResult(day);
 
   const radius = Math.max(walk + CFG.extraWalkMinutes, CFG.maxWalkMinutes) * CFG.walkMetersPerMinute * 1.2;
-  const places = await searchText(keyword, radius, DETAIL_FIELDS, { minRating: CFG.minRating });
+  let places;
+  try {
+    places = await searchText(keyword, radius, DETAIL_FIELDS, { minRating: CFG.minRating });
+  } catch (e) {
+    // Google 查不到時，還是把開票結果寫進去，網頁才不會一直顯示「選店中」
+    decided.error = 'Google 地圖暫時查不到資料，今天請大家依投票結果自由挑一家吧！';
+    await db.saveResult({ day, decided, place: null, steps: [{ label: 'Google 地圖查詢失敗', n: null, soft: true }] });
+    throw e;
+  }
   const w = await walking(places);
   const list = places.map((p, i) => ({
     id: p.id, name: p.displayName?.text, address: p.formattedAddress, url: p.googleMapsUri,
