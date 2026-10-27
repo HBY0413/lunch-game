@@ -145,6 +145,8 @@ async function boot() {
   }
   S.day = S.settings.test_day || taipeiNow().iso;
   await refreshAll(true);
+  const p0 = phaseAt(taipeiNow(), S.settings);
+  if (p0 === 'lobby' || p0 === 'revote') announceRound1();
   subscribe();
   setInterval(tick, 1000);
   setInterval(() => poll().catch(() => {}), 4000);
@@ -228,6 +230,7 @@ function announceRound1() {
   if (S.round1 || !S.tally) return;
   S.round1 = decideAll(S.tally, S.day, 'round1');
   queueTies(S.round1, 'round1');
+  chatDirty = true;
 }
 
 // ---------- 投票 ----------
@@ -241,7 +244,7 @@ function onChip(b) {
     $('ballotState').textContent = '送出中…';
     const { error } = await S.sb.rpc('cast_vote', { p_price: S.my.price, p_dist: S.my.dist, p_cat: S.my.cat });
     if (error) { $('ballotState').textContent = '沒有送出：' + error.message; return; }
-    S.saved = Date.now();
+    S.saved = Date.now(); $('ballotState').textContent = '';
     const { data } = await S.sb.rpc('get_tally'); if (data) S.tally = data;
     render();
   }, 350);
@@ -358,7 +361,7 @@ function render() {
   document.querySelector('.bar-top').classList.toggle('warn', warn && !S.paused);
   if (warn && S.warned !== p) { S.warned = p; Snd.alarm(); }
   if (S.me && $('meName').textContent !== S.me) { $('meName').textContent = S.me; $('meAv').textContent = [...nick(S.me)][0]; }
-  if (!S.me) { $('meName').textContent = p === 'wait' ? '（11:00 抽暱稱）' : '…'; $('meAv').textContent = '?'; }
+  if (!S.me) { $('meName').textContent = p === 'wait' && st ? `（${fmtHM(st.vote_start)} 抽暱稱）` : '…'; $('meAv').textContent = '?'; }
 
   // 流程卡片
   if (st) {
